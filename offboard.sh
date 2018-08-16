@@ -1,6 +1,7 @@
 #!/bin/bash
 # Set the path to the GAM you want to use
 GAM=/home/s_larsen/bin/gamadv-xtd/gam
+GAMFILEPATH=~/gam-data
 
 # Capture the leavers email address
 get_leaver () {
@@ -18,15 +19,22 @@ read -r manager
 
 # Remove the user form the google address list (contacts)
 remove_gal () {
-# removes the user from the google address list
 $GAM update user ${leaver} gal off
 }
 
 # Remove the user from all groups they are a member of, saving a list in case
 remove_groups () {
-# removes the user from all groups they are a member of
 $GAM print user ${leaver} groups > ${leaver}_group_membership.csv
 $GAM user ${leaver} delete groups
+}
+
+# Revoked all App Passwords, 2 Factor, and OAuth tokens
+# Wipe Account from All Mobile Devices
+deprovision () {
+$GAM user ${leaver} deprovision
+$GAM print mobile query "email:${leaver}" >> $GAMFILEPATH/tmp.mobile-data.csv
+$GAM csv $GAMFILEPATH/tmp.mobile-data.csv gam update mobile ~resourceId action account_wipe
+rm $GAMFILEPATH/tmp.mobile-data.csv
 }
 
 # Set the vacaction messaage
@@ -72,6 +80,8 @@ do
         if [[ $newManager = "" ]]; then 
         newManager="$manager"
         fi
+      
+      echo "Please log into Admin Console and reset sign in cookies for ${leaver}"
 
       break
       ;;

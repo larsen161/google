@@ -47,7 +47,7 @@ $GAM user ${leaver} forward on ${manager} archive
 
 transfer_drive () {
 # transfers all drive files from leaver to manager 
-$GAM create datatransfer ${leaver} gdrive ${manager} provacy_level shared,private
+$GAM create datatransfer ${leaver} gdrive ${manager} privacy_level shared,private
 }
 
 transfer_calendar () {

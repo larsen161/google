@@ -19,5 +19,10 @@ ID=1oIDdFydVgHoDC9saEuf6eH7YSSD8HLDEWe7vIrwcJ3I
 TABNAME=pendingHires
 OU=Secured/2SVDelayed
 
+# This creates the user, pulling most all the info from the sheet.
+# This command has a hard coded value to put users in the team@domain.com group
+# Update that group value as necessary
 $GAM csv gsheet $ADMIN $ID $TABNAME gam create user ~"username" firstname ~"First Name" lastname ~"Last Name" ou ~"ou" relation manager ~"Manager Email" groups member delivery allmail team notify "~~$personalemail~~,~~onboarding~~"
+
+# This command updates the users info which can only be done once the user is created
 $GAM csv gsheet $ADMIN $ID $TABNAME gam update user ~"username" phone type mobile value ~"Mobile Phone" primary organization title ~"Job Title" department ~"Primary Team" location ~"Primary Location" primary

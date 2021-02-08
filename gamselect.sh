@@ -3,7 +3,7 @@
 # NOTICE - Yes, this runs a new shell each time you move between gam profiles
 # so if you're trying to conserve memory/resouces on your machine be mindful of this
 
-# 1. Update to something like this in yoru ~/.bashrc file
+# 1. Update to something like this in your ~/.bashrc file
 # GAM=$HOME/bin/gamadv-xtd3/gam
 # GAMSECTION=$($GAM config verify | grep -oP '(?<=domain = )[^ ]*')
 # if [ "$color_prompt" = yes ]; then

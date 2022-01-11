@@ -29,14 +29,14 @@ GAM=$HOME/gamadv-xtd3/gam
 # If you change to default section, say so, and turn PS1 green (requires 0 byte json files, else it is NOT safe!).
 if [ "$1" = "default" ]; then
 $GAM select $1 save
-GAMSECTION=$($GAM config verify | grep -oP '(?<=Section: )[^ ]*')
+GAMSECTION=$($GAM showsections | awk '/\*/ {print $1}')
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]:\[\033[01;32m\]$GAMSECTION\[\033[00m\]\$ '
 
 # Grab your supplied section word and apply it, and set PS1 to red.
 # If you typo a section, you will get a gam error message and PS1 will still be turned red, to indicate it's not safe.
 elif [ "$1" != "" ]; then
 $GAM select $1 save
-GAMSECTION=$($GAM config verify | grep -oP '(?<=Section: )[^ ]*')
+GAMSECTION=$($GAM showsections | awk '/\*/ {print $1}')
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]:\[\033[01;31m\]$GAMSECTION\[\033[00m\]\$ '
 
 # If you forgot to supply a section, tell you, so you can run the command again.

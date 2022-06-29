@@ -17,6 +17,7 @@
 # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]:\[\033[01;32m\][$GAMSECTION]\[\033[00m\]\$ '
 # else
 # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\ $GAMSECTION $ '
+#fi
 
 # 2. Set this file as an alias based on where you saved the file; I keep mine in ~/bin. The source bit is important.
 # alias gamselect='source $HOME/bin/gamselect.sh'
@@ -24,7 +25,7 @@
 # 3. This is the code used in this gamselect.sh file
 
 # Set the path to the GAM you want to use
-GAM=$HOME/gamadv-xtd3/gam
+GAM=$HOME/bin/gamadv-xtd3/gam
 
 # If you change to default section, say so, and turn PS1 green (requires 0 byte json files, else it is NOT safe!).
 if [ "$1" = "default" ]; then
